@@ -31,3 +31,15 @@ class ProductPage(BasePage):
             assert item_cost.text == basket_cost.text, f"Basket cost '{basket_cost.text}' in 'Your basket total' message is incorrect"
 
 
+    def should_not_be_success_message_item_added_text(self):
+        assert self.is_not_element_present(*ProductPageLocators.ITEM_ADDED_TEXT), \
+           "Success message \"added to basket\" is presented, but should not be"
+
+
+    def should_message_disappeared_item_added_text(self):
+        assert not self.is_disappeared(*ProductPageLocators.ITEM_ADDED_TEXT), \
+            "Success message \"added to basket\" should dissapeared, but it didn't"
+
+
+
+
