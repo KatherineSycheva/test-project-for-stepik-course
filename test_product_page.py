@@ -2,6 +2,7 @@ import pytest
 import time
 from pages.product_page import ProductPage
 from pages.basket_page import BasketPage
+from pages.login_page import LoginPage
 
 # pytest -v -s --tb=line --language=en C:\Users\Ekate\test-project-for-stepik-course\test_product_page.py
 
@@ -65,4 +66,30 @@ def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
     basket_page.should_not_be_items_in_basket()
     basket_page.should_be_message_basket_is_empty()
 
+
+@pytest.mark.login
+class TestUserAddToBasketFromProductPage:
+    @pytest.fixture(scope="function", autouse=True)
+    def setup(self, browser):
+        email = str(time.time()) + "@fakemail.org"
+        password = email
+        self.link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207"
+        page = ProductPage(browser, self.link)
+        page.open()
+        page.go_to_login_page()
+        login_page = LoginPage(browser, browser.current_url)
+        login_page.register_new_user(email=email, password=password)
+        page.should_be_authorized_user()
+
+    def test_user_cant_see_success_message(self, browser):
+        page = ProductPage(browser, self.link)
+        page.open()
+        page.should_not_be_success_message_item_added_text()
+
+    def test_user_can_add_product_to_basket(self, browser):
+        page = ProductPage(browser, self.link)
+        page.open()
+        page.add_item_to_basket()
+        page.should_be_correct_item_in_the_basket()
+        page.should_be_correct_basket_cost()
 

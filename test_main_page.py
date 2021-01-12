@@ -6,7 +6,29 @@ from pages.basket_page import BasketPage
 import time
 #pytest -v --tb=line --language=en C:\Users\Ekate\test-project-for-stepik-course\test_main_page.py
 
-@pytest.mark.skip
+
+@pytest.mark.login_guest
+class TestLoginFromMainPage():
+    # не забываем передать первым аргументом self
+    def test_guest_can_go_to_login_page(self, browser):
+        link = "http://selenium1py.pythonanywhere.com/"
+        # инициализируем Page Object, передаем в конструктор экземпляр драйвера и url адрес
+        page = MainPage(browser, link)
+        # открываем страницу
+        page.open()
+        # переходим на страницу логина
+        page.go_to_login_page()
+        login_page = LoginPage(browser, browser.current_url)
+        login_page.should_be_login_page()
+
+    def test_guest_should_see_login_link(self, browser):
+        link = "http://selenium1py.pythonanywhere.com/"
+        page = MainPage(browser, link)
+        page.open()
+        page.should_be_login_link()
+
+
+#@pytest.mark.skip
 def test_guest_can_go_to_login_page(browser):
     link = "http://selenium1py.pythonanywhere.com/"
     # инициализируем Page Object, передаем в конструктор экземпляр драйвера и url адрес
@@ -19,7 +41,7 @@ def test_guest_can_go_to_login_page(browser):
     login_page.should_be_login_page()
 
 
-@pytest.mark.skip
+#@pytest.mark.skip
 def test_guest_should_see_login_link(browser):
     link = "http://selenium1py.pythonanywhere.com/"
     page = MainPage(browser, link)

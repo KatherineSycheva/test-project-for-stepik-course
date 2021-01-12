@@ -7,7 +7,7 @@ class ProductPage(BasePage):
     def add_item_to_basket(self):
         add_to_basket_button = self.browser.find_element(*ProductPageLocators.ADD_BASKET_BUTTON)
         add_to_basket_button.click()
-        self.solve_quiz_and_get_code()
+        #self.solve_quiz_and_get_code()
 
     # Проверка сообщения о том, что товар добавлен в корзину.
     # Название товара в сообщении должно совпадать с тем товаром, который вы действительно добавили
