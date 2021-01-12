@@ -7,10 +7,11 @@ from pages.login_page import LoginPage
 # pytest -v -s --tb=line --language=en C:\Users\Ekate\test-project-for-stepik-course\test_product_page.py
 
 
-@pytest.mark.parametrize('link', ["http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer0",
+'''@pytest.mark.parametrize('link', ["http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer0",
                                   pytest.param(
                                       "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer7",
-                                      marks=pytest.mark.xfail)])
+                                      marks=pytest.mark.xfail)])'''
+@pytest.mark.skip
 def test_guest_can_add_product_to_basket(browser, link):
     page = ProductPage(browser, link)
     page.open()
@@ -73,21 +74,21 @@ class TestUserAddToBasketFromProductPage:
     def setup(self, browser):
         email = str(time.time()) + "@fakemail.org"
         password = email
-        self.link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207"
-        page = ProductPage(browser, self.link)
-        page.open()
-        page.go_to_login_page()
-        login_page = LoginPage(browser, browser.current_url)
-        login_page.register_new_user(email=email, password=password)
-        page.should_be_authorized_user()
+        link = "http://selenium1py.pythonanywhere.com/accounts/login/"
+        self.page = LoginPage(browser, link)
+        self.page.open()
+        self.page.register_new_user(email=email, password=password)
+        self.page.should_be_authorized_user()
 
     def test_user_cant_see_success_message(self, browser):
-        page = ProductPage(browser, self.link)
+        link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207"
+        page = ProductPage(browser, link)
         page.open()
         page.should_not_be_success_message_item_added_text()
 
     def test_user_can_add_product_to_basket(self, browser):
-        page = ProductPage(browser, self.link)
+        link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207"
+        page = ProductPage(browser, link)
         page.open()
         page.add_item_to_basket()
         page.should_be_correct_item_in_the_basket()
