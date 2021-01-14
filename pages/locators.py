@@ -1,14 +1,11 @@
 '''
 Здесь хранятся внешние переменные для селекторов
 '''
-
-
 from selenium.webdriver.common.by import By
 
 
 class MainPageLocators():
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
-
 
 class LoginPageLocators():
     LOGIN_FORM = (By.CSS_SELECTOR, "#login_form")
@@ -25,13 +22,11 @@ class ProductPageLocators():
     BASKET_COST = (By.CSS_SELECTOR, "#messages > div:nth-child(3) > div > p > strong")
     ITEM_COST = (By.CSS_SELECTOR, "p.price_color")
 
-
 class BasePageLocators():
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
     LOGIN_LINK_INVALID = (By.CSS_SELECTOR, "#login_link_inc")
     BASKET_LINK = (By.CSS_SELECTOR, "div.basket-mini > span > a")
     USER_ICON = (By.CSS_SELECTOR, ".icon-user")
-
 
 class BasketPageLocators():
     BASKET_IS_EMPTY_MESSAGE = (By.CSS_SELECTOR, "#content_inner > p")

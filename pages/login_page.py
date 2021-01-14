@@ -8,7 +8,6 @@ class LoginPage(BasePage):
         self.should_be_login_form()
         self.should_be_register_form()
 
-
     def should_be_login_url(self):
         # реализуйте проверку на корректный url адрес
         assert "login" in self.url, f"URL address {self.url} of Login page is incorrect"
