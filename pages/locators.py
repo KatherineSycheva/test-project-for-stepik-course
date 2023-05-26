@@ -1,6 +1,6 @@
-'''
-Здесь хранятся внешние переменные для селекторов
-'''
+"""
+Variable for selectors
+"""
 from selenium.webdriver.common.by import By
 
 
