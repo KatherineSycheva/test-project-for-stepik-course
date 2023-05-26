@@ -2,6 +2,9 @@ from .base_page import BasePage
 from .locators import LoginPageLocators
 
 class LoginPage(BasePage):
+    def __init__(self, browser, url):
+        super(LoginPage, self).__init__(browser, url)
+
     def should_be_login_page(self):
         """Checks whether login page has necessary forms"""
         self.should_be_login_url()
