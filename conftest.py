@@ -4,13 +4,13 @@ from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
 from webdriver_manager.microsoft import EdgeChromiumDriverManager
 
+
 def pytest_addoption(parser):
     """A handler that reads the language and browser parameter from the command line."""
     parser.addoption('--language', action='store', default="en",
                      help="Choose language: en, ru, fr, es etc.")
     parser.addoption('--browser', action='store', default="chrome",
                      help="Choose browser: edge, firefox, chrome")
-
 
 
 @pytest.fixture(scope="class")
@@ -25,7 +25,7 @@ def browser(request):
     elif browser_name == "firefox":
         options = webdriver.FirefoxOptions()
         options.set_preference('intl.accept_languages', language)
-        browser = webdriver.Firefox(GeckoDriverManager().install(),options=options)
+        browser = webdriver.Firefox(GeckoDriverManager().install(), options=options)
     else:
         options = webdriver.ChromeOptions()
         options.add_argument('--language=' + language)
@@ -33,4 +33,3 @@ def browser(request):
     yield browser
     print("\nquit browser..")
     browser.quit()
-
