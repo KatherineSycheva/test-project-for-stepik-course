@@ -1,5 +1,4 @@
 import pytest
-
 from pages.locators import LoginPageLocators
 from pages.login_page import LoginPage
 from service.UserCreator import UserCreator

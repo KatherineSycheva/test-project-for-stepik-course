@@ -25,6 +25,7 @@ class ProductPageLocators():
     ITEM_ADDED_TEXT = (By.CSS_SELECTOR, "#messages > div:nth-child(1) > div > strong")
     BASKET_COST = (By.CSS_SELECTOR, "#messages > div:nth-child(3) > div > p > strong")
     ITEM_COST = (By.CSS_SELECTOR, "p.price_color")
+    SEE_BASKET_BUTTON = (By.CSS_SELECTOR, "#messages > div > div > p > a:nth-child(1)")
 
 class BasePageLocators():
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
@@ -34,5 +35,5 @@ class BasePageLocators():
 
 class BasketPageLocators():
     BASKET_IS_EMPTY_MESSAGE = (By.CSS_SELECTOR, "#content_inner > p")
-    ITEMS_IN_BASKET = (By.CSS_SELECTOR, "form.basket_summary")
+    ITEMS_IN_BASKET = (By.CSS_SELECTOR, ".basket-items >  div > div > h3 > a")
 

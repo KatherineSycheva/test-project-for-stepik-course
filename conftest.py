@@ -30,6 +30,7 @@ def browser(request):
         options = webdriver.ChromeOptions()
         options.add_argument('--language=' + language)
         browser = webdriver.Chrome(ChromeDriverManager().install(), options=options)
+    browser.maximize_window()
     yield browser
     print("\nquit browser..")
     browser.quit()
