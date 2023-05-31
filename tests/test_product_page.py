@@ -2,7 +2,6 @@ from pages.product_page import ProductPage
 from pages.basket_page import BasketPage
 
 
-
 def setup_browser(browser):
     link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
     page = ProductPage(browser, link)
@@ -20,5 +19,3 @@ def test_guest_add_product_to_basket(browser):
     products = basket.get_products_in_basket()
     assert product_name in products, \
         f"There is no product named {product_name} in basket"
-
-

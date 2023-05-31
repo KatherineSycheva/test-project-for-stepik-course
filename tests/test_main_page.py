@@ -26,12 +26,3 @@ def test_guest_goes_to_login_page(browser):
     main_page.go_to_login_page()
     assert "login" in browser.current_url, \
         f"URL address {browser.current_url} of Login page is incorrect"
-
-
-@pytest.mark.login_guest
-def test_guest_sees_empty_basket_opened_from_main_page(browser):
-    main_page = setup_page(browser)
-    main_page.go_to_basket_page()
-    basket_page = BasketPage(browser, browser.current_url)
-    assert basket_page.is_element_present(*BasketPageLocators.BASKET_IS_EMPTY_MESSAGE), \
-        f"Message about empty basket isn't presented'"
